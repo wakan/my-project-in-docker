@@ -20,11 +20,11 @@ services:
       - 8080
 
   prometheus:
-    image: prom/prometheus:latest
+    image: promwithconfig
+    build: 
+      context: prometheus
     container_name: monitoring_prometheus
     restart: unless-stopped
-    volumes:
-      - ./prometheus/config:/etc/prometheus/
     expose:
       - 9090
     ports:
