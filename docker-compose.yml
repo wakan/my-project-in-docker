@@ -3,10 +3,16 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     container_name: monitoring_node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
     restart: unless-stopped
     expose:
       - 9100
-      
+    volumes:
+      - '/:/host:ro,rslave'
+        
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: monitoring_cadvisor
@@ -18,7 +24,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     expose:
       - 8080
-
+    
   prometheus:
     image: promwithconfig
     build: 
