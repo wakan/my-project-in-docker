@@ -5,14 +5,16 @@ services:
     container_name: monitoring_node_exporter
     command:
       - '--path.rootfs=/host'
-    network_mode: host
+    network_mode:
+      - host
+      - my-project-in-docker_default
     pid: host
     restart: unless-stopped
     expose:
       - 9100
     volumes:
       - '/:/host:ro,rslave'
-        
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: monitoring_cadvisor
