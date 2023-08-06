@@ -5,9 +5,7 @@ services:
     container_name: monitoring_node_exporter
     command:
       - '--path.rootfs=/host'
-    network_mode:
-      - host
-      - my-project-in-docker_default
+    network_mode: host
     pid: host
     restart: unless-stopped
     expose:
