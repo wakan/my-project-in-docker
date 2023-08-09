@@ -54,7 +54,9 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
     
   nats:
-    image: nats:latest
+    image: natswithconfig
+    build: 
+      context: nats
     container_name: nats-server
     restart: unless-stopped
     expose:
