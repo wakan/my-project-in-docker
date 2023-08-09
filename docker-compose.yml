@@ -52,6 +52,19 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
       - GF_USERS_ALLOW_SIGN_UP=false
+    
+  nats:
+    image: nats:latest
+    container_name: nats-server
+    restart: unless-stopped
+    expose:
+      - 4222
+      - 8222
+      - 6222
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
 
 volumes:
   grafana_data:
