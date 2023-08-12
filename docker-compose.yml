@@ -53,6 +53,12 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
       - GF_USERS_ALLOW_SIGN_UP=false
 
+  cassandra:
+    image: cassandra
+    container_name: cassandra
+    restart: unless-stopped
+    volumes:
+      - cassandradata:/var/lib/cassandra
   jaeger:
     image: jaegertracing/all-in-one:1.47
     container_name: jaeger
@@ -99,3 +105,4 @@ services:
 
 volumes:
   grafana_data:
+  cassandradata:
